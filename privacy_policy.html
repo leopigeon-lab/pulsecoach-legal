@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseCoach — Privacy Policy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #0a0e14;
+      --surface:  #111720;
+      --card:     #161d28;
+      --border:   #1e2a38;
+      --accent:   #3b82f6;
+      --accent2:  #22d3a5;
+      --text:     #e2eaf4;
+      --muted:    #7a8ea6;
+      --warn:     #f59e0b;
+      --radius:   12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── Top bar ── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo-mark {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .logo-text { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; }
+    .pill {
+      margin-left: auto;
+      background: color-mix(in srgb, var(--accent) 15%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+      color: var(--accent);
+      font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 20px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(160deg, #0d1e35 0%, var(--bg) 60%);
+      padding: 64px 24px 48px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent2); }
+    .hero p { color: var(--muted); max-width: 560px; margin: 0 auto 24px; font-size: 17px; }
+    .effective {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 16px;
+      font-size: 13px; color: var(--muted);
+    }
+    .effective strong { color: var(--text); }
+
+    /* ── Layout ── */
+    .page { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    /* ── TOC ── */
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+    .toc-title {
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+    }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 6px; }
+    .toc a { color: var(--accent); text-decoration: none; font-size: 15px; }
+    .toc a:hover { text-decoration: underline; }
+
+    /* ── Sections ── */
+    section { margin-bottom: 48px; scroll-margin-top: 80px; }
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px; font-weight: 400;
+      color: var(--text); margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+    h2 .num {
+      background: color-mix(in srgb, var(--accent) 15%, transparent);
+      color: var(--accent); border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 600;
+      padding: 2px 8px; flex-shrink: 0;
+    }
+    h3 { font-size: 16px; font-weight: 600; color: var(--text); margin: 20px 0 8px; }
+    p { color: var(--muted); margin-bottom: 14px; }
+    strong { color: var(--text); font-weight: 600; }
+
+    /* ── Cards / callouts ── */
+    .callout {
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin: 20px 0;
+      border-left: 3px solid;
+    }
+    .callout.info  { background: color-mix(in srgb, var(--accent) 8%, transparent); border-color: var(--accent); }
+    .callout.green { background: color-mix(in srgb, var(--accent2) 8%, transparent); border-color: var(--accent2); }
+    .callout.warn  { background: color-mix(in srgb, var(--warn) 8%, transparent); border-color: var(--warn); }
+    .callout p { margin: 0; font-size: 15px; }
+    .callout p + p { margin-top: 8px; }
+
+    /* ── Data table ── */
+    .data-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 20px 0;
+    }
+    .data-grid .cell {
+      background: var(--card);
+      padding: 14px 16px;
+      font-size: 14px;
+    }
+    .data-grid .head {
+      background: var(--surface);
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--muted);
+    }
+
+    /* ── Permission rows ── */
+    .perm-list { display: flex; flex-direction: column; gap: 1px; margin: 16px 0; }
+    .perm-row {
+      display: grid; grid-template-columns: 200px 1fr auto;
+      background: var(--card); padding: 12px 16px; font-size: 14px;
+      align-items: center; gap: 12px;
+    }
+    .perm-row:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+    .perm-row:last-child  { border-radius: 0 0 var(--radius) var(--radius); }
+    .perm-name { color: var(--text); font-weight: 500; font-family: monospace; font-size: 12px; }
+    .perm-reason { color: var(--muted); }
+    .perm-badge {
+      font-size: 11px; font-weight: 600; padding: 2px 8px;
+      border-radius: 20px; white-space: nowrap;
+    }
+    .req  { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); }
+    .opt  { background: color-mix(in srgb, var(--warn) 12%, transparent);   color: var(--warn); }
+    .cond { background: color-mix(in srgb, var(--accent2) 12%, transparent); color: var(--accent2); }
+
+    ul, ol { color: var(--muted); padding-left: 20px; margin-bottom: 14px; }
+    li { margin-bottom: 6px; }
+
+    /* ── Contact card ── */
+    .contact-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .contact-card .icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: color-mix(in srgb, var(--accent2) 15%, transparent);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .contact-card a { color: var(--accent2); }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--surface); border-top: 1px solid var(--border);
+      padding: 24px; text-align: center; font-size: 13px; color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      .data-grid { grid-template-columns: 1fr; }
+      .perm-row  { grid-template-columns: 1fr; gap: 4px; }
+      .perm-badge { width: fit-content; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">💓</div>
+  <span class="logo-text">PulseCoach</span>
+  <span class="pill">Privacy Policy</span>
+</header>
+
+<div class="hero">
+  <h1>Your health data.<br><em>Your control. Always.</em></h1>
+  <p>PulseCoach is built on a single principle: your health data stays on your device, encrypted, and is never shared with advertisers, data brokers, or third-party analytics services.</p>
+  <div class="effective">
+    <span>📅</span>
+    <span>Effective <strong id="eff-date">1 January 2025</strong> · Last updated <strong id="upd-date">1 January 2025</strong></span>
+  </div>
+</div>
+
+<div class="page">
+
+  <nav class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#s1">Who we are</a></li>
+      <li><a href="#s2">What data the app collects and why</a></li>
+      <li><a href="#s3">Permissions explained</a></li>
+      <li><a href="#s4">Health Connect data use</a></li>
+      <li><a href="#s5">How data is stored and encrypted</a></li>
+      <li><a href="#s6">Backup and cloud sync</a></li>
+      <li><a href="#s7">Data sharing — the short answer is: none</a></li>
+      <li><a href="#s8">Third-party services</a></li>
+      <li><a href="#s9">Data retention and deletion</a></li>
+      <li><a href="#s10">Children's privacy</a></li>
+      <li><a href="#s11">Your rights (GDPR, CCPA, and others)</a></li>
+      <li><a href="#s12">Changes to this policy</a></li>
+      <li><a href="#s13">Contact</a></li>
+    </ol>
+  </nav>
+
+  <!-- 1 -->
+  <section id="s1">
+    <h2><span class="num">1</span> Who we are</h2>
+    <p>PulseCoach is an independent Android application for heart rate variability (HRV) monitoring, training load analysis, and daily readiness scoring. It is developed and maintained by an individual developer ("we", "us", "our").</p>
+    <p>This policy describes how PulseCoach handles personal and health data. It applies to the Android application and to this privacy policy web page. No website analytics, user accounts, or server-side processing exist.</p>
+    <div class="callout green">
+      <p><strong>The core commitment:</strong> PulseCoach is designed as a fully on-device application. Your health data — heart rate, HRV, training load, sleep, VO₂ max estimates, GPS routes, and profile — is processed and stored on your device only. We have no server infrastructure that receives or processes your health data.</p>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section id="s2">
+    <h2><span class="num">2</span> What data the app collects and why</h2>
+    <p>All data is collected directly from your device sensors, from wearable devices you pair, or from platform health APIs you explicitly authorise. No data is collected passively in the background without a clear user action or an active session.</p>
+
+    <div class="data-grid">
+      <div class="cell head">Category</div>
+      <div class="cell head">Data collected</div>
+      <div class="cell head">Purpose</div>
+
+      <div class="cell"><strong>Heart rate</strong></div>
+      <div class="cell">Beat-to-beat HR (bpm) during live sessions and morning HRV readings</div>
+      <div class="cell">HRV calculation, training load estimation, readiness scoring</div>
+
+      <div class="cell"><strong>RR intervals</strong></div>
+      <div class="cell">Inter-beat interval in milliseconds from BLE HR sensor</div>
+      <div class="cell">RMSSD, SDNN, pNN50, Poincaré analytics; HRV baseline</div>
+
+      <div class="cell"><strong>HRV metrics</strong></div>
+      <div class="cell">RMSSD, SDNN, pNN50, lnRMSSD, readiness score</div>
+      <div class="cell">Daily readiness decision, trend charts, VO₂ proxy estimate</div>
+
+      <div class="cell"><strong>Sleep</strong></div>
+      <div class="cell">Nightly sleep duration (hours) from Health Connect or manually entered</div>
+      <div class="cell">Readiness composite score (30% weighting)</div>
+
+      <div class="cell"><strong>Resting HR</strong></div>
+      <div class="cell">Resting heart rate from Health Connect or profile</div>
+      <div class="cell">HRV/RHR mismatch detection, VO₂ estimation (Uth-Sørensen)</div>
+
+      <div class="cell"><strong>Exercise sessions</strong></div>
+      <div class="cell">Activity type, duration, average HR, max HR, distance, kcal</div>
+      <div class="cell">TRIMP training load (ATL/CTL/TSB), injury risk ramp rate</div>
+
+      <div class="cell"><strong>GPS location</strong></div>
+      <div class="cell">Route coordinates during live sessions (opt-in GPS toggle)</div>
+      <div class="cell">Speed-based VO₂ estimation, route map display in history</div>
+
+      <div class="cell"><strong>VO₂ max</strong></div>
+      <div class="cell">Estimated ml/kg/min computed on device; synced from HC/Garmin if available</div>
+      <div class="cell">Fitness category (ACSM), trend tracking</div>
+
+      <div class="cell"><strong>Body measurements</strong></div>
+      <div class="cell">Age, sex, height, weight — manually entered or read from Health Connect</div>
+      <div class="cell">Personalised TRIMP, VO₂, HR zone, and kcal calculations</div>
+
+      <div class="cell"><strong>Activity recognition</strong></div>
+      <div class="cell">Activity type detected by Android (RUNNING, CYCLING, WALKING, STILL, etc.)</div>
+      <div class="cell">Auto-session start/stop; session classification</div>
+    </div>
+
+    <div class="callout info">
+      <p><strong>No behavioural or usage analytics.</strong> PulseCoach does not collect screen views, button taps, time-in-app, crash stacks transmitted to a server, or any other usage telemetry. We do not use Firebase Analytics, Google Analytics, Mixpanel, Amplitude, or any equivalent service.</p>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section id="s3">
+    <h2><span class="num">3</span> Permissions explained</h2>
+    <p>PulseCoach requests Android permissions only when they are necessary for a specific feature. You can deny optional permissions and most functionality will still work.</p>
+
+    <div class="perm-list">
+      <div class="perm-row">
+        <span class="perm-name">BLUETOOTH_SCAN / BLUETOOTH_CONNECT</span>
+        <span class="perm-reason">Required to discover and connect to Bluetooth Low Energy HR sensors. Used only when you initiate a scan or a session.</span>
+        <span class="perm-badge req">Required</span>
+      </div>
+      <div class="perm-row">
+        <span class="perm-name">ACCESS_FINE_LOCATION</span>
+        <span class="perm-reason">Required on Android ≤11 for BLE scanning (OS requirement). On Android 12+ location is not required for BLE. Also used for GPS route recording when you enable the GPS toggle during a live session.</span>
+        <span class="perm-badge req">Required (≤API 30)</span>
+      </div>
+      <div class="perm-row">
+        <span class="perm-name">ACTIVITY_RECOGNITION</span>
+        <span class="perm-reason">Detects physical activity type (running, cycling, etc.) for automatic session start/stop. You can decline this — HRV and manual sessions work fully without it.</span>
+        <span class="perm-badge opt">Optional</span>
+      </div>
+      <div class="perm-row">
+        <span class="perm-name">FOREGROUND_SERVICE_HEALTH / LOCATION</span>
+        <span class="perm-reason">Keeps the BLE connection and GPS tracking alive while the app is in the background during a live session. The persistent notification is shown whenever this service is running.</span>
+        <span class="perm-badge req">Required (for sessions)</span>
+      </div>
+      <div class="perm-row">
+        <span class="perm-name">POST_NOTIFICATIONS</span>
+        <span class="perm-reason">Used only for: (1) the daily morning HRV reminder at your chosen time, (2) the foreground service notification during live sessions, and (3) the auto-session completion alert.</span>
+        <span class="perm-badge opt">Optional</span>
+      </div>
+      <div class="perm-row">
+        <span class="perm-name">SCHEDULE_EXACT_ALARM / USE_EXACT_ALARM</span>
+        <span class="perm-reason">Schedules your morning HRV reminder at an exact time. Used only for the alarm you configure in Settings.</span>
+        <span class="perm-badge cond">Alarm feature only</span>
+      </div>
+      <div class="perm-row">
+        <span class="perm-name">Health Connect permissions (READ/WRITE)</span>
+        <span class="perm-reason">Core (HR, HRV, Exercise) used to import historical workout data and HRV readings. Optional (Sleep, Weight, Height, DateOfBirth, RHR, VO₂) used only to improve calculation accuracy. All reads require your explicit Health Connect permission grant.</span>
+        <span class="perm-badge opt">User-granted</span>
+      </div>
+      <div class="perm-row">
+        <span class="perm-name">USE_BIOMETRIC / USE_FINGERPRINT</span>
+        <span class="perm-reason">Optional app lock using biometric authentication or PIN after 5 minutes of inactivity. Enabled only if you turn on App Lock in Settings.</span>
+        <span class="perm-badge opt">Optional</span>
+      </div>
+      <div class="perm-row">
+        <span class="perm-name">WRITE_EXTERNAL_STORAGE (API ≤28 only)</span>
+        <span class="perm-reason">Allows CSV export to the Downloads folder on Android 9 and below. Not requested on Android 10+.</span>
+        <span class="perm-badge cond">Export / API ≤28</span>
+      </div>
+      <div class="perm-row">
+        <span class="perm-name">INTERNET / ACCESS_NETWORK_STATE</span>
+        <span class="perm-reason">Used only for Google Drive backup (if you connect a Google account) and Garmin API sync (if configured). Not used for any analytics or tracking.</span>
+        <span class="perm-badge opt">Optional</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section id="s4">
+    <h2><span class="num">4</span> Health Connect data use</h2>
+    <p>PulseCoach integrates with Android Health Connect to read health data you have already recorded with other apps (Garmin Connect, Google Fit, Wear OS, etc.). This integration is governed by the <a href="https://developer.android.com/health-and-fitness/guides/health-connect/develop/get-started#data-types" target="_blank" rel="noopener" style="color:var(--accent2)">Health Connect permissions framework</a>.</p>
+
+    <h3>What we read from Health Connect</h3>
+    <ul>
+      <li><strong>HeartRateRecord</strong> — historical HR samples for session import</li>
+      <li><strong>HeartRateVariabilityRmssdRecord</strong> — HRV readings from wearables</li>
+      <li><strong>ExerciseSessionRecord</strong> — workout history for training load calculation</li>
+      <li><strong>SleepSessionRecord</strong> — sleep duration for readiness scoring</li>
+      <li><strong>RestingHeartRateRecord</strong> — resting HR for VO₂ estimation and mismatch detection</li>
+      <li><strong>DistanceRecord, SpeedRecord, ActiveCaloriesBurnedRecord</strong> — training intensity estimation</li>
+      <li><strong>WeightRecord, HeightRecord</strong> — accurate kcal and VO₂ computation</li>
+      <li><strong>Vo2MaxRecord</strong> — VO₂ max from other apps for cross-validation</li>
+      <li><strong>DateOfBirthRecord</strong> — age for ACSM fitness category lookup (only when not manually entered)</li>
+    </ul>
+
+    <h3>What we write to Health Connect</h3>
+    <ul>
+      <li><strong>HeartRateRecord, HeartRateVariabilityRmssdRecord, Vo2MaxRecord</strong> — computed results from PulseCoach BLE sessions, available to other apps (e.g. your GP's health app)</li>
+    </ul>
+
+    <div class="callout warn">
+      <p><strong>Health Connect data is never sent to our servers.</strong> PulseCoach reads Health Connect data on-device, processes it locally using validated physiological models, and writes results back to Health Connect. We do not upload Health Connect data to any external service, including Google Drive backup (which stores only your PulseCoach-specific database, not raw HC records).</p>
+    </div>
+
+    <h3>Limited use policy</h3>
+    <p>PulseCoach's use of data obtained from Health Connect complies with the <a href="https://developer.android.com/health-and-fitness/guides/health-connect/publish/health-connect-policies" target="_blank" rel="noopener" style="color:var(--accent2)">Health Connect Permissions Policy</a>. Specifically:</p>
+    <ul>
+      <li>Health Connect data is used <strong>only</strong> to provide HRV analysis, training load, and readiness features within PulseCoach.</li>
+      <li>Health Connect data is <strong>not</strong> used for advertising, user profiling, or any purpose unrelated to the features you explicitly use.</li>
+      <li>Health Connect data is <strong>not</strong> transferred to third parties, sold, or shared outside the app.</li>
+      <li>We do not use Health Connect data to train machine learning models or for research without your explicit consent.</li>
+    </ul>
+  </section>
+
+  <!-- 5 -->
+  <section id="s5">
+    <h2><span class="num">5</span> How data is stored and encrypted</h2>
+
+    <h3>On-device database</h3>
+    <p>All health data is stored in a local SQLite database encrypted with <strong>SQLCipher AES-256</strong>. The encryption key is generated randomly on first launch, stored exclusively in the Android Keystore (hardware-backed on modern devices), and never transmitted anywhere. Even if someone obtains a copy of the database file, it cannot be read without the key.</p>
+
+    <h3>Encrypted backup files</h3>
+    <p>When you enable backup, PulseCoach serialises your data and encrypts it with <strong>AES-256-GCM</strong> using a separate Keystore-backed key before writing it to Google Drive or local storage. The backup file is opaque ciphertext to anyone without your device's private key.</p>
+
+    <h3>App lock</h3>
+    <p>If you enable App Lock in Settings, the app requires biometric authentication (fingerprint, face) or your device PIN after 5 minutes of inactivity. This uses Android BiometricPrompt and does not transmit any biometric data.</p>
+
+    <h3>Network security</h3>
+    <p>All outbound network connections (Google Drive API, Garmin API) use TLS 1.3 with certificate pinning enforced via the Android Network Security configuration. Cleartext HTTP is not permitted.</p>
+
+    <div class="callout green">
+      <p><strong>No cloud database.</strong> PulseCoach has no backend server, no user accounts, and no cloud database that stores your health data. The only optional network operation is encrypted backup to Google Drive AppData (a private folder only the app can access) or local file export.</p>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section id="s6">
+    <h2><span class="num">6</span> Backup and cloud sync</h2>
+    <p>Backup is <strong>disabled by default</strong> and requires your explicit opt-in in Settings.</p>
+
+    <h3>Google Drive backup (optional)</h3>
+    <p>If you connect a Google account, PulseCoach can back up an encrypted copy of your database to your Google Drive's "App Data" folder. This folder:</p>
+    <ul>
+      <li>Is accessible only to PulseCoach — no other app and no human (including us) can read it</li>
+      <li>Contains only the encrypted backup file, not raw Health Connect records</li>
+      <li>Is governed by Google's Privacy Policy</li>
+    </ul>
+    <p>We use only the <code>drive.appdata</code> OAuth scope — we cannot read any other files in your Google Drive.</p>
+
+    <h3>Local backup (optional)</h3>
+    <p>You can export an encrypted backup file to your device's Downloads folder (or app-private external storage on Android 10+). This file is the same AES-256-GCM encrypted payload as the Drive backup.</p>
+
+    <h3>Android automatic backup</h3>
+    <p>The app sets <code>android:allowBackup="false"</code>, which means Android's automatic cloud backup of app data is disabled. This prevents unencrypted data from being uploaded to Google's servers without your knowledge.</p>
+  </section>
+
+  <!-- 7 -->
+  <section id="s7">
+    <h2><span class="num">7</span> Data sharing — the short answer is: none</h2>
+    <div class="callout green">
+      <p><strong>We do not sell, rent, share, or disclose your personal or health data to any third party.</strong> There are no advertising partners, data brokers, analytics providers, or third-party SDKs in PulseCoach that receive your data.</p>
+    </div>
+    <p>The only scenarios where data leaves your device are:</p>
+    <ul>
+      <li><strong>Google Drive backup</strong> — encrypted, opt-in, stored in your own account's AppData folder, inaccessible to us</li>
+      <li><strong>Health Connect writes</strong> — computed results written back to Health Connect, visible only to apps you explicitly authorise on your device</li>
+      <li><strong>Garmin API</strong> — if you configure Garmin credentials in Settings, activity data is fetched from Garmin's servers using your credentials. No data is sent to Garmin by PulseCoach.</li>
+      <li><strong>CSV export</strong> — data you explicitly export to a file for your own use</li>
+    </ul>
+  </section>
+
+  <!-- 8 -->
+  <section id="s8">
+    <h2><span class="num">8</span> Third-party services</h2>
+
+    <h3>Google Play Services / Google Sign-In</h3>
+    <p>Used only for Google account authentication when you connect Google Drive for backup. Governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--accent2)">Google's Privacy Policy</a>.</p>
+
+    <h3>Android Health Connect</h3>
+    <p>An Android platform service provided by Google. Data interactions are governed by the <a href="https://developer.android.com/health-and-fitness/guides/health-connect/publish/health-connect-policies" target="_blank" rel="noopener" style="color:var(--accent2)">Health Connect Permissions Policy</a> and your Health Connect permissions settings.</p>
+
+    <h3>Garmin Connect API (optional)</h3>
+    <p>If you configure Garmin Connect in Settings, the app makes HTTPS requests to Garmin's public API using OAuth 1.0a credentials you supply. This is entirely optional and can be left unconfigured. Governed by <a href="https://www.garmin.com/en-US/privacy/app-privacy/" target="_blank" rel="noopener" style="color:var(--accent2)">Garmin's Privacy Policy</a>.</p>
+
+    <h3>Open-source libraries</h3>
+    <p>PulseCoach uses open-source Android libraries (Room, WorkManager, MPAndroidChart, SQLCipher, OkHttp, etc.) that operate entirely on-device. None of these libraries collect or transmit any data.</p>
+
+    <div class="callout info">
+      <p><strong>No advertising SDKs.</strong> PulseCoach contains no advertising SDK, no Facebook SDK, no Firebase Analytics, no Crashlytics, and no equivalent third-party telemetry library.</p>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section id="s9">
+    <h2><span class="num">9</span> Data retention and deletion</h2>
+
+    <h3>On-device retention</h3>
+    <ul>
+      <li>All data is stored on your device until you delete it or uninstall the app.</li>
+      <li>PulseCoach automatically prunes derived metric rows (training load, readiness scores) older than 180 days to keep the database efficient.</li>
+      <li>Raw HR samples, RR intervals, GPS points, and session records are retained indefinitely unless you delete them from the History screen.</li>
+    </ul>
+
+    <h3>Deleting your data</h3>
+    <ul>
+      <li><strong>Individual sessions:</strong> Long-press any session in History and tap Delete. Associated HR, RR, GPS, and HRV data are deleted via cascading foreign key constraint.</li>
+      <li><strong>All data:</strong> Uninstalling PulseCoach from your device removes the encrypted database. Data written to Health Connect remains in Health Connect and can be managed there.</li>
+      <li><strong>Backup data:</strong> Delete the backup file from Google Drive App Data or your device Downloads folder. PulseCoach cannot delete it automatically.</li>
+      <li><strong>Health Connect data written by PulseCoach:</strong> Open the Health Connect app on your device → Settings → App Permissions → PulseCoach → Remove access. This removes PulseCoach's writes.</li>
+    </ul>
+  </section>
+
+  <!-- 10 -->
+  <section id="s10">
+    <h2><span class="num">10</span> Children's privacy</h2>
+    <p>PulseCoach is designed for adult athletes and fitness enthusiasts. The app is not directed at children under 16 years of age, and we do not knowingly collect health or personal data from children under 16.</p>
+    <p>If you believe a child under 16 is using PulseCoach, please contact us using the details in Section 13. We will assist in removing the data.</p>
+    <p>The minimum age guard in the profile (age must be in the range 15–90 to be accepted) reflects this restriction — users outside this range default to a population average value and receive an in-app reminder to set their age.</p>
+  </section>
+
+  <!-- 11 -->
+  <section id="s11">
+    <h2><span class="num">11</span> Your rights</h2>
+    <p>Depending on your jurisdiction, you may have rights regarding your personal data. Because all data is stored locally on your device and we have no central server with your data, most rights are exercised directly through the app.</p>
+
+    <h3>Under GDPR (EU/EEA/UK)</h3>
+    <ul>
+      <li><strong>Right of access</strong> — use CSV Export in Settings to export all your data</li>
+      <li><strong>Right to erasure</strong> — delete sessions in History or uninstall the app</li>
+      <li><strong>Right to portability</strong> — CSV export provides your data in a machine-readable format</li>
+      <li><strong>Right to rectification</strong> — edit your profile in Settings at any time</li>
+      <li><strong>Right to object to automated decision-making</strong> — readiness scores are computed locally on your device; you can disable them by revoking Health Connect permissions</li>
+    </ul>
+
+    <h3>Under CCPA (California)</h3>
+    <p>PulseCoach does not sell personal information. California residents have the right to know what data is collected (see Section 2) and to delete it (see Section 9).</p>
+
+    <h3>Legal basis for processing (GDPR)</h3>
+    <p>Where GDPR applies, the legal basis for processing is <strong>performance of a contract</strong> (Article 6(1)(b)) — you request HRV analysis and we perform it on your device — and, for health data under Article 9, <strong>explicit consent</strong> obtained through the Health Connect permission dialog and the first-run consent screen.</p>
+  </section>
+
+  <!-- 12 -->
+  <section id="s12">
+    <h2><span class="num">12</span> Changes to this policy</h2>
+    <p>We may update this Privacy Policy when we add new features, change data practices, or when required by law. Material changes will be communicated via:</p>
+    <ul>
+      <li>An in-app notification on the next app launch after the change</li>
+      <li>A version bump of the policy with an updated "Last updated" date at the top of this page</li>
+      <li>A commit to this GitHub repository with a clear description of what changed</li>
+    </ul>
+    <p>Continued use of PulseCoach after a material change constitutes acceptance of the updated policy. If you do not accept the changes, you may stop using the app and delete your data as described in Section 9.</p>
+  </section>
+
+  <!-- 13 -->
+  <section id="s13">
+    <h2><span class="num">13</span> Contact</h2>
+    <p>If you have any questions about this Privacy Policy, wish to exercise your data rights, or want to report a concern, please contact us:</p>
+    <div class="contact-card">
+      <div class="icon">✉️</div>
+      <div>
+        <strong>Privacy enquiries</strong><br>
+        <a href="mailto:privacy@pulsecoach.app">privacy@pulsecoach.app</a>
+        <p style="margin-top:8px; font-size:14px;">We aim to respond to all privacy enquiries within <strong>5 business days</strong>. For data deletion requests, we will confirm completion within 30 days.</p>
+        <p style="font-size:14px;"><strong>GitHub Issues:</strong> <a href="https://github.com/YOUR_USERNAME/pulsecoach/issues" target="_blank" rel="noopener">github.com/YOUR_USERNAME/pulsecoach/issues</a> — for non-sensitive questions about data practices.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>© 2025 PulseCoach · All health data processed on-device · <a href="#" style="color:var(--accent2)">Back to top ↑</a></p>
+  <p style="margin-top:6px; font-size:12px;">This policy is hosted on GitHub Pages and is the authoritative version referenced by the app's Health Connect permission registration.</p>
+</footer>
+
+<script>
+  // Set dates dynamically so the template doesn't need manual updates each revision
+  const now = new Date();
+  const fmt = d => d.toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+  document.getElementById('upd-date').textContent = fmt(now);
+  document.getElementById('eff-date').textContent = fmt(new Date('2025-01-01'));
+</script>
+
+</body>
+</html>
