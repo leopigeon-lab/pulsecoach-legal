@@ -238,14 +238,15 @@
       <li><a href="#s3">Permissions explained</a></li>
       <li><a href="#s4">Health Connect data use</a></li>
       <li><a href="#s5">How data is stored and encrypted</a></li>
-      <li><a href="#s6">Backup and cloud sync</a></li>
-      <li><a href="#s7">Data sharing — the short answer is: none</a></li>
-      <li><a href="#s8">Third-party services</a></li>
-      <li><a href="#s9">Data retention and deletion</a></li>
-      <li><a href="#s10">Children's privacy</a></li>
-      <li><a href="#s11">Your rights (GDPR, CCPA, and others)</a></li>
-      <li><a href="#s12">Changes to this policy</a></li>
-      <li><a href="#s13">Contact</a></li>
+      <li><a href="#s6">Health and wellness disclaimer</a></li>
+      <li><a href="#s7">Backup and cloud sync</a></li>
+      <li><a href="#s8">Data sharing and user-controlled transfers</a></li>
+      <li><a href="#s9">Third-party services</a></li>
+      <li><a href="#s10">Data retention and deletion</a></li>
+      <li><a href="#s11">Children's privacy</a></li>
+      <li><a href="#s12">Your rights (GDPR, CCPA, and others)</a></li>
+      <li><a href="#s13">Changes to this policy</a></li>
+      <li><a href="#s14">Contact</a></li>
     </ol>
   </nav>
 
@@ -279,7 +280,7 @@
 
       <div class="cell"><strong>HRV metrics</strong></div>
       <div class="cell">RMSSD, SDNN, pNN50, lnRMSSD, readiness score</div>
-      <div class="cell">Daily readiness decision, trend charts, VO₂ proxy estimate</div>
+      <div class="cell">Daily readiness decision, trend charts, passive VO₂ context</div>
 
       <div class="cell"><strong>Sleep</strong></div>
       <div class="cell">Nightly sleep duration (hours) from Health Connect or manually entered</div>
@@ -294,16 +295,16 @@
       <div class="cell">TRIMP training load (ATL/CTL/TSB), injury risk ramp rate</div>
 
       <div class="cell"><strong>GPS location</strong></div>
-      <div class="cell">Route coordinates during live sessions (opt-in GPS toggle)</div>
-      <div class="cell">Speed-based VO₂ estimation, route map display in history</div>
+      <div class="cell">Route coordinates during live sessions when you enable GPS</div>
+      <div class="cell">Route maps, distance/speed, elevation, and running VO₂ estimation</div>
 
       <div class="cell"><strong>VO₂ max</strong></div>
-      <div class="cell">Estimated ml/kg/min computed on device; synced from HC/Garmin if available</div>
-      <div class="cell">Fitness category (ACSM), trend tracking</div>
+      <div class="cell">Estimated ml/kg/min computed on device; imported from Health Connect, Garmin, or FIT files if available</div>
+      <div class="cell">Fitness category, trend tracking, and comparison with external device estimates</div>
 
       <div class="cell"><strong>Body measurements</strong></div>
-      <div class="cell">Age, sex, height, weight — manually entered or read from Health Connect</div>
-      <div class="cell">Personalised TRIMP, VO₂, HR zone, and kcal calculations</div>
+      <div class="cell">Age, sex, height, weight, resting HR, and max HR — manually entered or read/derived from Health Connect and sessions</div>
+      <div class="cell">Personalised TRIMP, VO₂, HR zone, kcal calculations, and confidence labels</div>
 
       <div class="cell"><strong>Activity recognition</strong></div>
       <div class="cell">Activity type detected by Android (RUNNING, CYCLING, WALKING, STILL, etc.)</div>
@@ -347,13 +348,13 @@
         <span class="perm-badge opt">Optional</span>
       </div>
       <div class="perm-row">
-        <span class="perm-name">SCHEDULE_EXACT_ALARM / USE_EXACT_ALARM</span>
+        <span class="perm-name">SCHEDULE_EXACT_ALARM</span>
         <span class="perm-reason">Schedules your morning HRV reminder at an exact time. Used only for the alarm you configure in Settings.</span>
         <span class="perm-badge cond">Alarm feature only</span>
       </div>
       <div class="perm-row">
         <span class="perm-name">Health Connect permissions (READ/WRITE)</span>
-        <span class="perm-reason">Core (HR, HRV, Exercise) used to import historical workout data and HRV readings. Optional (Sleep, Weight, Height, DateOfBirth, RHR, VO₂) used only to improve calculation accuracy. All reads require your explicit Health Connect permission grant.</span>
+        <span class="perm-reason">Health data is used to import historical workouts, HR, HRV, sleep, resting HR, distance, speed, calories, weight, height, and VO₂ values when you grant access. These data improve readiness, load, and trend estimates. All reads require your explicit Health Connect permission grant.</span>
         <span class="perm-badge opt">User-granted</span>
       </div>
       <div class="perm-row">
@@ -387,18 +388,17 @@
       <li><strong>SleepSessionRecord</strong> — sleep duration for readiness scoring</li>
       <li><strong>RestingHeartRateRecord</strong> — resting HR for VO₂ estimation and mismatch detection</li>
       <li><strong>DistanceRecord, SpeedRecord, ActiveCaloriesBurnedRecord</strong> — training intensity estimation</li>
-      <li><strong>WeightRecord, HeightRecord</strong> — accurate kcal and VO₂ computation</li>
+      <li><strong>WeightRecord, HeightRecord</strong> — kcal, training-load, and VO₂ computation</li>
       <li><strong>Vo2MaxRecord</strong> — VO₂ max from other apps for cross-validation</li>
-      <li><strong>DateOfBirthRecord</strong> — age for ACSM fitness category lookup (only when not manually entered)</li>
     </ul>
 
     <h3>What we write to Health Connect</h3>
     <ul>
-      <li><strong>HeartRateRecord, HeartRateVariabilityRmssdRecord, Vo2MaxRecord</strong> — computed results from PulseCoach BLE sessions, available to other apps (e.g. your GP's health app)</li>
+      <li><strong>HeartRateRecord, HeartRateVariabilityRmssdRecord, Vo2MaxRecord</strong> — computed results from PulseCoach sessions when you explicitly grant write permission, available only to apps you authorize in Health Connect</li>
     </ul>
 
     <div class="callout warn">
-      <p><strong>Health Connect data is never sent to our servers.</strong> PulseCoach reads Health Connect data on-device, processes it locally using validated physiological models, and writes results back to Health Connect. We do not upload Health Connect data to any external service, including Google Drive backup (which stores only your PulseCoach-specific database, not raw HC records).</p>
+      <p><strong>Health Connect data is never sent to our servers.</strong> PulseCoach reads Health Connect data on-device and stores an app-local copy of imported sessions and derived metrics in its encrypted database. If you enable backup, that encrypted database backup may include data originally imported from Health Connect.</p>
     </div>
 
     <h3>Limited use policy</h3>
@@ -425,23 +425,40 @@
     <p>If you enable App Lock in Settings, the app requires biometric authentication (fingerprint, face) or your device PIN after 5 minutes of inactivity. This uses Android BiometricPrompt and does not transmit any biometric data.</p>
 
     <h3>Network security</h3>
-    <p>All outbound network connections (Google Drive API, Garmin API) use TLS 1.3 with certificate pinning enforced via the Android Network Security configuration. Cleartext HTTP is not permitted.</p>
+    <p>All outbound network connections to Google Drive, Garmin, and weather services use HTTPS/TLS. The Android Network Security configuration blocks cleartext HTTP traffic. PulseCoach does not currently use certificate pinning.</p>
 
     <div class="callout green">
-      <p><strong>No cloud database.</strong> PulseCoach has no backend server, no user accounts, and no cloud database that stores your health data. The only optional network operation is encrypted backup to Google Drive AppData (a private folder only the app can access) or local file export.</p>
+      <p><strong>No PulseCoach cloud database.</strong> PulseCoach has no backend server, no PulseCoach user accounts, and no cloud database operated by us. Optional network features are encrypted backup to your Google Drive AppData folder, Garmin import if configured, weather lookup, and files you explicitly export or share.</p>
     </div>
   </section>
 
   <!-- 6 -->
   <section id="s6">
-    <h2><span class="num">6</span> Backup and cloud sync</h2>
+    <h2><span class="num">6</span> Health and wellness disclaimer</h2>
+    <div class="callout warn">
+      <p><strong>PulseCoach is not a medical device and does not provide medical advice.</strong> The app is for personal wellness, fitness awareness, and trend tracking only. It is not intended to diagnose, treat, cure, prevent, or monitor any disease or medical condition.</p>
+    </div>
+    <p>Readiness scores, HRV metrics, VO₂ estimates, training load, calorie estimates, threshold guidance, and coaching notifications are algorithmic estimates. They can be wrong because sensors, imports, profile values, GPS, power meters, and physiological assumptions can be wrong.</p>
+    <ul>
+      <li>Do not use PulseCoach for emergency, clinical, occupational, aviation, life-support, or safety-critical decisions.</li>
+      <li>Do not ignore symptoms, pain, dizziness, chest discomfort, unusual breathlessness, or medical advice because of an app score.</li>
+      <li>VO₂ estimates are not laboratory measurements. Calculated VO₂ depends materially on resting HR, max HR, weight, GPS or power quality, and steady-state effort quality.</li>
+      <li>External device VO₂ values from Garmin, FIT files, or Health Connect are displayed as device estimates and may use proprietary methods outside PulseCoach's control.</li>
+      <li>Training recommendations are not personalized prescriptions from a physician, certified coach, or sports scientist.</li>
+    </ul>
+    <p>If you have a medical condition, are pregnant, are returning from illness or injury, take heart-rate-altering medication, or are unsure whether exercise is safe for you, consult a qualified healthcare professional before relying on the app.</p>
+  </section>
+
+  <!-- 7 -->
+  <section id="s7">
+    <h2><span class="num">7</span> Backup and cloud sync</h2>
     <p>Backup is <strong>disabled by default</strong> and requires your explicit opt-in in Settings.</p>
 
     <h3>Google Drive backup (optional)</h3>
     <p>If you connect a Google account, PulseCoach can back up an encrypted copy of your database to your Google Drive's "App Data" folder. This folder:</p>
     <ul>
       <li>Is accessible only to PulseCoach — no other app and no human (including us) can read it</li>
-      <li>Contains only the encrypted backup file, not raw Health Connect records</li>
+      <li>Contains only the encrypted PulseCoach backup file. The backup can include sessions or metrics that PulseCoach previously imported from Health Connect, Garmin, or files.</li>
       <li>Is governed by Google's Privacy Policy</li>
     </ul>
     <p>We use only the <code>drive.appdata</code> OAuth scope — we cannot read any other files in your Google Drive.</p>
@@ -453,24 +470,25 @@
     <p>The app sets <code>android:allowBackup="false"</code>, which means Android's automatic cloud backup of app data is disabled. This prevents unencrypted data from being uploaded to Google's servers without your knowledge.</p>
   </section>
 
-  <!-- 7 -->
-  <section id="s7">
-    <h2><span class="num">7</span> Data sharing — the short answer is: none</h2>
+  <!-- 8 -->
+  <section id="s8">
+    <h2><span class="num">8</span> Data sharing and user-controlled transfers</h2>
     <div class="callout green">
-      <p><strong>We do not sell, rent, share, or disclose your personal or health data to any third party.</strong> There are no advertising partners, data brokers, analytics providers, or third-party SDKs in PulseCoach that receive your data.</p>
+      <p><strong>We do not sell, rent, or disclose your personal or health data for advertising, analytics, profiling, or data-broker purposes.</strong> There are no advertising partners, data brokers, analytics providers, or third-party telemetry SDKs in PulseCoach.</p>
     </div>
-    <p>The only scenarios where data leaves your device are:</p>
+    <p>The only scenarios where data leaves your device or is made available outside PulseCoach are user-controlled feature flows:</p>
     <ul>
       <li><strong>Google Drive backup</strong> — encrypted, opt-in, stored in your own account's AppData folder, inaccessible to us</li>
       <li><strong>Health Connect writes</strong> — computed results written back to Health Connect, visible only to apps you explicitly authorise on your device</li>
-      <li><strong>Garmin API</strong> — if you configure Garmin credentials in Settings, activity data is fetched from Garmin's servers using your credentials. No data is sent to Garmin by PulseCoach.</li>
-      <li><strong>CSV export</strong> — data you explicitly export to a file for your own use</li>
+      <li><strong>Garmin API</strong> — if you configure Garmin credentials in Settings, activity data is fetched from Garmin's servers using your credentials. No PulseCoach-generated health data is sent to Garmin by PulseCoach.</li>
+      <li><strong>Weather lookup</strong> — if route data is present, approximate grid coordinates and session time may be used to fetch historical weather from Open-Meteo. This is used for workout context, not tracking.</li>
+      <li><strong>Exports and share sheets</strong> — data you explicitly export to GPX/CSV/debug ZIP or share through Android's system share sheet</li>
     </ul>
   </section>
 
-  <!-- 8 -->
-  <section id="s8">
-    <h2><span class="num">8</span> Third-party services</h2>
+  <!-- 9 -->
+  <section id="s9">
+    <h2><span class="num">9</span> Third-party services</h2>
 
     <h3>Google Play Services / Google Sign-In</h3>
     <p>Used only for Google account authentication when you connect Google Drive for backup. Governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--accent2)">Google's Privacy Policy</a>.</p>
@@ -481,6 +499,9 @@
     <h3>Garmin Connect API (optional)</h3>
     <p>If you configure Garmin Connect in Settings, the app makes HTTPS requests to Garmin's public API using OAuth 1.0a credentials you supply. This is entirely optional and can be left unconfigured. Governed by <a href="https://www.garmin.com/en-US/privacy/app-privacy/" target="_blank" rel="noopener" style="color:var(--accent2)">Garmin's Privacy Policy</a>.</p>
 
+    <h3>Open-Meteo weather API</h3>
+    <p>Used only to fetch historical weather context for sessions with route data. PulseCoach rounds location to a coarse grid before lookup and does not use this service for analytics, advertising, or user tracking. Governed by <a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener" style="color:var(--accent2)">Open-Meteo's terms</a>.</p>
+
     <h3>Open-source libraries</h3>
     <p>PulseCoach uses open-source Android libraries (Room, WorkManager, MPAndroidChart, SQLCipher, OkHttp, etc.) that operate entirely on-device. None of these libraries collect or transmit any data.</p>
 
@@ -489,9 +510,9 @@
     </div>
   </section>
 
-  <!-- 9 -->
-  <section id="s9">
-    <h2><span class="num">9</span> Data retention and deletion</h2>
+  <!-- 10 -->
+  <section id="s10">
+    <h2><span class="num">10</span> Data retention and deletion</h2>
 
     <h3>On-device retention</h3>
     <ul>
@@ -502,57 +523,57 @@
 
     <h3>Deleting your data</h3>
     <ul>
-      <li><strong>Individual sessions:</strong> Long-press any session in History and tap Delete. Associated HR, RR, GPS, and HRV data are deleted via cascading foreign key constraint.</li>
+      <li><strong>Individual sessions:</strong> Delete any session in History. Associated HR, RR, GPS, power, HRV, and derived metrics are deleted with the session.</li>
       <li><strong>All data:</strong> Uninstalling PulseCoach from your device removes the encrypted database. Data written to Health Connect remains in Health Connect and can be managed there.</li>
-      <li><strong>Backup data:</strong> Delete the backup file from Google Drive App Data or your device Downloads folder. PulseCoach cannot delete it automatically.</li>
+      <li><strong>Backup data:</strong> Delete backup files from Google Drive AppData or your local backup location. Creating a new backup may replace or prune older PulseCoach backup files, but you remain responsible for deleting copies you exported or shared.</li>
       <li><strong>Health Connect data written by PulseCoach:</strong> Open the Health Connect app on your device → Settings → App Permissions → PulseCoach → Remove access. This removes PulseCoach's writes.</li>
     </ul>
   </section>
 
-  <!-- 10 -->
-  <section id="s10">
-    <h2><span class="num">10</span> Children's privacy</h2>
+  <!-- 11 -->
+  <section id="s11">
+    <h2><span class="num">11</span> Children's privacy</h2>
     <p>PulseCoach is designed for adult athletes and fitness enthusiasts. The app is not directed at children under 16 years of age, and we do not knowingly collect health or personal data from children under 16.</p>
-    <p>If you believe a child under 16 is using PulseCoach, please contact us using the details in Section 13. We will assist in removing the data.</p>
+    <p>If you believe a child under 16 is using PulseCoach, please contact us using the details in Section 14. We will assist in removing the data.</p>
     <p>The minimum age guard in the profile (age must be in the range 15–90 to be accepted) reflects this restriction — users outside this range default to a population average value and receive an in-app reminder to set their age.</p>
   </section>
 
-  <!-- 11 -->
-  <section id="s11">
-    <h2><span class="num">11</span> Your rights</h2>
+  <!-- 12 -->
+  <section id="s12">
+    <h2><span class="num">12</span> Your rights</h2>
     <p>Depending on your jurisdiction, you may have rights regarding your personal data. Because all data is stored locally on your device and we have no central server with your data, most rights are exercised directly through the app.</p>
 
     <h3>Under GDPR (EU/EEA/UK)</h3>
     <ul>
       <li><strong>Right of access</strong> — use CSV Export in Settings to export all your data</li>
-      <li><strong>Right to erasure</strong> — delete sessions in History or uninstall the app</li>
+      <li><strong>Right to erasure</strong> — delete sessions in History, remove backups you created, revoke Health Connect access, or uninstall the app</li>
       <li><strong>Right to portability</strong> — CSV export provides your data in a machine-readable format</li>
       <li><strong>Right to rectification</strong> — edit your profile in Settings at any time</li>
       <li><strong>Right to object to automated decision-making</strong> — readiness scores are computed locally on your device; you can disable them by revoking Health Connect permissions</li>
     </ul>
 
     <h3>Under CCPA (California)</h3>
-    <p>PulseCoach does not sell personal information. California residents have the right to know what data is collected (see Section 2) and to delete it (see Section 9).</p>
+    <p>PulseCoach does not sell personal information. California residents have the right to know what data is collected (see Section 2) and to delete it (see Section 10).</p>
 
     <h3>Legal basis for processing (GDPR)</h3>
     <p>Where GDPR applies, the legal basis for processing is <strong>performance of a contract</strong> (Article 6(1)(b)) — you request HRV analysis and we perform it on your device — and, for health data under Article 9, <strong>explicit consent</strong> obtained through the Health Connect permission dialog and the first-run consent screen.</p>
   </section>
 
-  <!-- 12 -->
-  <section id="s12">
-    <h2><span class="num">12</span> Changes to this policy</h2>
+  <!-- 13 -->
+  <section id="s13">
+    <h2><span class="num">13</span> Changes to this policy</h2>
     <p>We may update this Privacy Policy when we add new features, change data practices, or when required by law. Material changes will be communicated via:</p>
     <ul>
       <li>An in-app notification on the next app launch after the change</li>
       <li>A version bump of the policy with an updated "Last updated" date at the top of this page</li>
       <li>A commit to this GitHub repository with a clear description of what changed</li>
     </ul>
-    <p>Continued use of PulseCoach after a material change constitutes acceptance of the updated policy. If you do not accept the changes, you may stop using the app and delete your data as described in Section 9.</p>
+    <p>Continued use of PulseCoach after a material change constitutes acceptance of the updated policy. If you do not accept the changes, you may stop using the app and delete your data as described in Section 10.</p>
   </section>
 
-  <!-- 13 -->
-  <section id="s13">
-    <h2><span class="num">13</span> Contact</h2>
+  <!-- 14 -->
+  <section id="s14">
+    <h2><span class="num">14</span> Contact</h2>
     <p>If you have any questions about this Privacy Policy, wish to exercise your data rights, or want to report a concern, please contact us:</p>
     <div class="contact-card">
       <div class="icon">✉️</div>
@@ -560,7 +581,7 @@
         <strong>Privacy enquiries</strong><br>
         <a href="mailto:privacy@pulsecoach.app">privacy@pulsecoach.app</a>
         <p style="margin-top:8px; font-size:14px;">We aim to respond to all privacy enquiries within <strong>5 business days</strong>. For data deletion requests, we will confirm completion within 30 days.</p>
-        <p style="font-size:14px;"><strong>GitHub Issues:</strong> <a href="https://github.com/YOUR_USERNAME/pulsecoach/issues" target="_blank" rel="noopener">github.com/YOUR_USERNAME/pulsecoach/issues</a> — for non-sensitive questions about data practices.</p>
+        <p style="font-size:14px;"><strong>GitHub Issues:</strong> <a href="https://github.com/leopigeon-lab/PulseCoach/issues" target="_blank" rel="noopener">github.com/leopigeon-lab/PulseCoach/issues</a> — for non-sensitive questions about data practices.</p>
       </div>
     </div>
   </section>
